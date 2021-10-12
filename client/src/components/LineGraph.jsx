@@ -4,7 +4,7 @@ import { Line } from "react-chartjs-2";
 const LineGraph = (props) => {
 
   const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: props.xAxis,
     datasets: [
       {
         label: "First dataset",

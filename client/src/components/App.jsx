@@ -15,6 +15,8 @@ function App() {
   const [days, setDays] = useState(7);
   const [country, setCountry] = useState("");
   const [covidCasesYAxis, setCovidCasesYAxis] = useState([]);
+  const [covidDatesXAxis, setCovidDatesXAxis] = useState([]);
+
 
   useEffect(() => {
     setLoading(true);
@@ -62,7 +64,7 @@ function App() {
     setCountry(e.target.value);
     const d = new Date();
     const to = formatDate(d);
-    const from = formatDate(d.setDate(d.getDate() - 6));
+    const from = formatDate(d.setDate(d.getDate() - (days - 1)));
 
     getCountryDataByDates(e.target.value, to, from);
 
@@ -84,11 +86,13 @@ function App() {
         // })
 
         const yAxisCovidCount = res.data.map((d) => d.Cases);
-        console.log(yAxisCovidCount);
+        const xAxisDates = res.data.map((d) => d.Date);
+
         const covidDetails = covidSummary.Countries.find(country => country.Slug === countrySlug);
 
 
         setCovidCasesYAxis(yAxisCovidCount);
+        setCovidDatesXAxis(xAxisDates);
         setTotalConfirmed(covidDetails['TotalConfirmed']);
         setTotalRecovered(covidDetails['TotalRecovered']);
         setTotalDeaths(covidDetails['TotalDeaths']);
@@ -118,7 +122,10 @@ function App() {
           <option value="90">>Last 90 Days</option>
         </select>
       </div>
-      <LineGraph yAxis={covidCasesYAxis} />
+      <LineGraph
+        yAxis={covidCasesYAxis}
+        xAxis={covidDatesXAxis}
+      />
     </div >
   )
 }
