@@ -47,6 +47,7 @@ function App() {
     covidSummary.Countries.forEach((country, index) => {
       countries.push(<option value={country.Slug} key={index}>{country.Country}</option>)
     })
+    countries.unshift(<option value={""} key={-1}>Select Country</option>)
   }
 
   const formatDate = (date) => {
@@ -72,6 +73,11 @@ function App() {
 
   const daysHandler = (e) => {
     setDays(e.target.value);
+    const d = new Date();
+    const to = formatDate(d);
+    const from = formatDate(d.setDate(d.getDate() - (e.target.value - 1)));
+
+    getCountryDataByDates(country, to, from);
   }
 
   // https://api.covid19api.com/country/south-africa/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z
@@ -118,8 +124,8 @@ function App() {
         </select>
         <select value={days} onChange={daysHandler}>
           <option value="7">Last 7 Days</option>
-          <option value="30">>Last 30 Days</option>
-          <option value="90">>Last 90 Days</option>
+          <option value="30">Last 30 Days</option>
+          <option value="90">Last 90 Days</option>
         </select>
       </div>
       <LineGraph

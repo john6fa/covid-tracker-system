@@ -1,5 +1,6 @@
 import React from 'react'
 import Card from './Card.jsx'
+import NumberFormat from 'react-number-format';
 
 const CovidSummary = (props) => {
 
@@ -17,15 +18,21 @@ const CovidSummary = (props) => {
         }}>
           <Card>
             <span>Total Confirmed</span> <br />
-            <span>{totalConfirmed}</span>
+            <span>
+              <NumberFormat value={totalConfirmed} displayType={'text'} thousandSeparator={true} />
+            </span>
           </Card>
           <Card>
             <span>Total Recovered</span> <br />
-            <span>{totalRecovered}</span>
+            <span>
+              <NumberFormat value={totalRecovered} displayType={'text'} thousandSeparator={true} />
+            </span>
           </Card>
           <Card>
             <span>Total Death</span> <br />
-            <span>{totalDeaths}</span>
+            <span>
+              <NumberFormat value={totalDeaths} displayType={'text'} thousandSeparator={true} />
+            </span>
           </Card>
         </div>
       </div>

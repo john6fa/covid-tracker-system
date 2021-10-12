@@ -7,7 +7,7 @@ const LineGraph = (props) => {
     labels: props.xAxis,
     datasets: [
       {
-        label: "First dataset",
+        label: "COVID Cases",
         data: props.yAxis,
         fill: true,
         backgroundColor: "rgba(75,192,192,0.2)",
