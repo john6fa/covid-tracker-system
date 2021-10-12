@@ -25,10 +25,13 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "chart.js": "^3.5.1",
     "express": "^4.17.1",
     "live-server": "^1.2.1",
     "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "react-chartjs-2": "^3.0.5",
+    "react-dom": "^16.14.0",
+    "react-number-format": "^4.7.3"
   },
   "bugs": {
     "url": "https://github.com/john6fa/covid-tracker-system/issues"
