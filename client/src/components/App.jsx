@@ -86,7 +86,7 @@ function App() {
         // })
 
         const yAxisCovidCount = res.data.map((d) => d.Cases);
-        const xAxisDates = res.data.map((d) => d.Date);
+        const xAxisDates = res.data.map((d) => d.Date.substring(0, 10));
 
         const covidDetails = covidSummary.Countries.find(country => country.Slug === countrySlug);
 
@@ -110,7 +110,7 @@ function App() {
         totalConfirmed={totalConfirmed}
         totalRecovered={totalRecovered}
         totalDeaths={totalDeaths}
-        country={''}
+        country={country}
       />
       <div>
         <select value={country} onChange={countryHandler}>
