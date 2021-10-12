@@ -37,6 +37,13 @@ function App() {
     return <p>Loading data from the API</p>;
   }
 
+  const countries = [];
+  if (covidSummary.Countries) {
+    covidSummary.Countries.forEach((country, index) => {
+      countries.push(<option value={country.Slug} key={index}>{country.Country}</option>)
+    })
+  }
+
   return (
     <div className="App">
       <CovidSummary
@@ -47,10 +54,14 @@ function App() {
       />
       <div>
         <select>
+          {countries}
+        </select>
+        <select>
+          <option value="7">Last 7 Days</option>
+          <option value="30">>Last 30 Days</option>
+          <option value="90">>Last 90 Days</option>
         </select>
       </div>
-
-
       <LineGraph />
     </div >
   )
