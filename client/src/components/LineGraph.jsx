@@ -8,7 +8,7 @@ const LineGraph = (props) => {
     datasets: [
       {
         label: "First dataset",
-        data: [33, 53, 85, 41, 44, 65, 81, 56, 55, 40, 11, 5],
+        data: props.yAxis,
         fill: true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)"

@@ -14,6 +14,7 @@ function App() {
   const [covidSummary, setCovidSummary] = useState({});
   const [days, setDays] = useState(7);
   const [country, setCountry] = useState("");
+  const [covidCasesYAxis, setCovidCasesYAxis] = useState([]);
 
   useEffect(() => {
     setLoading(true);
@@ -46,12 +47,57 @@ function App() {
     })
   }
 
+  const formatDate = (date) => {
+    const d = new Date(date);
+
+    const year = d.getFullYear();
+    const month = `0${d.getMonth() + 1}`.slice(-2);
+    const _date = d.getDate();
+
+    return `${year}-${month}-${_date}`
+  }
+
+  // 2020-03-01
   const countryHandler = (e) => {
     setCountry(e.target.value);
+    const d = new Date();
+    const to = formatDate(d);
+    const from = formatDate(d.setDate(d.getDate() - 6));
+
+    getCountryDataByDates(e.target.value, to, from);
+
   }
 
   const daysHandler = (e) => {
     setDays(e.target.value);
+  }
+
+  // https://api.covid19api.com/country/south-africa/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z
+  const getCountryDataByDates = (countrySlug, to, from) => {
+    axios.get(`/country/${countrySlug}/status/confirmed?from=${from}T00:00:00Z&to=${to}T00:00:00Z`)
+      .then((res) => {
+        console.log(res);
+
+        // const covidCases = [];
+        // res.data.forEach((country, index) => {
+        //   covidCases.push(country.Cases);
+        // })
+
+        const yAxisCovidCount = res.data.map((d) => d.Cases);
+        console.log(yAxisCovidCount);
+        const covidDetails = covidSummary.Countries.find(country => country.Slug === countrySlug);
+
+
+        setCovidCasesYAxis(yAxisCovidCount);
+        setTotalConfirmed(covidDetails['TotalConfirmed']);
+        setTotalRecovered(covidDetails['TotalRecovered']);
+        setTotalDeaths(covidDetails['TotalDeaths']);
+
+      })
+
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
   return (
@@ -72,7 +118,7 @@ function App() {
           <option value="90">>Last 90 Days</option>
         </select>
       </div>
-      <LineGraph />
+      <LineGraph yAxis={covidCasesYAxis} />
     </div >
   )
 }
