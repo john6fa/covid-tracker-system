@@ -1,25 +1,15 @@
 import React from 'react';
+import LineGraph from './LineGraph.jsx';
 
 const axios = require('axios');
 
-class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-
-
-  }
-
-
-
-  render() {
-    return (
-      <div>
-        Hello
-      </div>
-    )
-  }
+function App() {
+  return (
+    <div>
+      <LineGraph />
+    </div>
+  )
 }
 
-export default App;
+export default App
