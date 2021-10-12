@@ -12,6 +12,8 @@ function App() {
   const [totalDeaths, setTotalDeaths] = useState(0);
   const [loading, setLoading] = useState(0);
   const [covidSummary, setCovidSummary] = useState({});
+  const [days, setDays] = useState(7);
+  const [country, setCountry] = useState("");
 
   useEffect(() => {
     setLoading(true);
@@ -44,6 +46,14 @@ function App() {
     })
   }
 
+  const countryHandler = (e) => {
+    setCountry(e.target.value);
+  }
+
+  const daysHandler = (e) => {
+    setDays(e.target.value);
+  }
+
   return (
     <div className="App">
       <CovidSummary
@@ -53,10 +63,10 @@ function App() {
         country={''}
       />
       <div>
-        <select>
+        <select value={country} onChange={countryHandler}>
           {countries}
         </select>
-        <select>
+        <select value={days} onChange={daysHandler}>
           <option value="7">Last 7 Days</option>
           <option value="30">>Last 30 Days</option>
           <option value="90">>Last 90 Days</option>
