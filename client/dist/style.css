@@ -25,20 +25,25 @@ ul {
   box-shadow: 0 0 10px 0 #eee;
   border: 1px solid #cecece;
   padding: 30px;
+  margin-left: 60px;
 }
 
 .options {
   padding: 15px;
   padding-top: 25px;
+  margin-left: 25px;
 }
 
 .days {
   margin-left: 50px;
   padding: 8px;
   font-size: 18px;
+  box-shadow: 0 0 10px 0 #eee;
 }
 
 .countries {
   padding: 8px;
   font-size: 18px;
+  box-shadow: 0 0 10px 0 #eee;
 }
+
