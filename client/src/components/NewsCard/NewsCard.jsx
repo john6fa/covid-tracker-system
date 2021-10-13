@@ -1,35 +1,59 @@
 import React from 'react'
 import { Card, CardActions, CardActionArea, CardContent, CardMedia, Button, Typography } from "@material-ui/core";
+import useStyles from './styles.js';
+// import { FacebookShareButton, TwitterShareButton } from "react-share";
+// import { FacebookIcon, TwitterIcon } from "react-share";
+
 
 const NewsCard = ({ article: { description, publishedAt, source, title, url, urlToImage }, i }) => {
 
+  const classes = useStyles();
+
   return (
-    <Card sx={{ maxWidth: 450 }}>
+    <Card sx={{ maxWidth: 450 }} href={url} target="_blank" className={classes.card}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="200"
+          className={classes.media}
           image={urlToImage || "https://images.unsplash.com/photo-1544991875-5dc1b05f607d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"}
           alt="image"
         />
+
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h5" component="div" className={classes.title}>
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+
+          <div className={classes.details}>
+            <Typography variant="body2">
+              {(new Date(publishedAt)).toDateString()}
+            </Typography>
+            <Typography variant="body2">
+              {source.name}
+            </Typography>
+          </div>
+
+          <Typography variant="body2" >
             {description}
           </Typography>
         </CardContent>
+
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">Share</Button>
-        <Button size="small">Learn More</Button>
+
+      <CardActions className={classes.cardActions}>
+        {/* <Button size="small" color="primary">Share</Button> */}
+        <Button size="small" href={url} target="_blank">Learn More</Button>
       </CardActions>
+
+
+
     </Card>
   )
 }
 
 export default NewsCard;
+
+
 
 
 // author: "Beth Skwarecki"

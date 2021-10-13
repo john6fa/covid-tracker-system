@@ -18,6 +18,7 @@ const NewsCards = (props) => {
 
   return (
     <div>
+      <h1 style={{ textTransform: "capitalize", fontSize: "45px", marginLeft: "55px", marginBottom: "60px" }}>Trending Covid-19 News Articles</h1>
       <Grow in>
         <Grid className={classes.container} container alignItems="stretch" spacing={3}>
           {newsArticle}
