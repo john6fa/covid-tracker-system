@@ -118,11 +118,11 @@ function App() {
         totalDeaths={totalDeaths}
         country={country}
       />
-      <div>
-        <select value={country} onChange={countryHandler}>
+      <div className="options">
+        <select className="countries" value={country} onChange={countryHandler}>
           {countries}
         </select>
-        <select value={days} onChange={daysHandler}>
+        <select className="days" value={days} onChange={daysHandler}>
           <option value="7">Last 7 Days</option>
           <option value="30">Last 30 Days</option>
           <option value="90">Last 90 Days</option>
