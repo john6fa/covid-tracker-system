@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 const axiosInstance = axios.create({
-  baseURL: 'https://newsapi.org'
+  baseURL: 'https://api.covid19api.com'
 });
 
-export default axiosInstance
+export default axiosInstance;

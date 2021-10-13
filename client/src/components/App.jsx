@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import LineGraph from './LineGraph.jsx';
-import CovidSummary from './CovidSummary.jsx';
+import LineGraph from './Graph/LineGraph.jsx';
+import CovidSummary from './Graph/CovidSummary.jsx';
 
 // const axios = require('axios');
-import axios from './axios.jsx';
-import axios2 from './axios2.jsx';
+import axios from './Graph/axios.jsx';
+import axios2 from './NewsCards/axios2.jsx';
 
 
 function App() {
@@ -82,7 +82,6 @@ function App() {
     const from = formatDate(d.setDate(d.getDate() - (days - 1)));
 
     getCountryDataByDates(e.target.value, to, from);
-
   }
 
   const daysHandler = (e) => {
