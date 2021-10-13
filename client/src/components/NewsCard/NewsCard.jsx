@@ -5,13 +5,15 @@ import useStyles from './styles.js';
 // import { FacebookIcon, TwitterIcon } from "react-share";
 
 
+
+
 const NewsCard = ({ article: { description, publishedAt, source, title, url, urlToImage }, i }) => {
 
   const classes = useStyles();
 
   return (
-    <Card sx={{ maxWidth: 450 }} href={url} target="_blank" className={classes.card}>
-      <CardActionArea>
+    <Card sx={{ maxWidth: 450 }} className={classes.card}>
+      <CardActionArea href={url} target="_blank">
         <CardMedia
           component="img"
           className={classes.media}
@@ -25,15 +27,15 @@ const NewsCard = ({ article: { description, publishedAt, source, title, url, url
           </Typography>
 
           <div className={classes.details}>
-            <Typography variant="body2">
+            <Typography variant="body1">
               {(new Date(publishedAt)).toDateString()}
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body1">
               {source.name}
             </Typography>
           </div>
 
-          <Typography variant="body2" >
+          <Typography variant="body1" >
             {description}
           </Typography>
         </CardContent>
@@ -42,7 +44,10 @@ const NewsCard = ({ article: { description, publishedAt, source, title, url, url
 
       <CardActions className={classes.cardActions}>
         {/* <Button size="small" color="primary">Share</Button> */}
-        <Button size="small" href={url} target="_blank">Learn More</Button>
+
+        <Button
+          style={{ backgroundColor: 'rgb(46, 138, 224)', color: '#FFFFFF' }}
+          variant="contained" size="medium" href={url} target="_blank">Learn More</Button>
       </CardActions>
 
 

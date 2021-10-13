@@ -40,9 +40,10 @@ const styles = makeStyles({
   },
 
   cardActions: {
-    padding: '0 16px 8px 16px',
+    padding: '10px',
+    paddingBottom: '20px',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
   },
 })
 
