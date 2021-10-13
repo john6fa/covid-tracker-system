@@ -2,7 +2,10 @@ import React from 'react';
 import NewsCard from '../NewsCard/NewsCard.jsx';
 import { Grid, Grow, Typography } from '@material-ui/core';
 
+import useStyles from './styles.js';
+
 const NewsCards = (props) => {
+  const classes = useStyles();
   const { articles } = props;
 
   const newsArticle = [];
@@ -41,15 +44,5 @@ export default NewsCards;
 //     <NewsCard i={i} />
 //   })
 // }
-// author: "Beth Skwarecki"
-// content: "The most important thing that the COVID vaccines do is prevent deaths and severe illness from COVID-19. The next most important thing they do is prevent many cases of milder illnessa job theyre not p… [+3306 chars]"
-// description: "The most important thing that the COVID vaccines do is prevent deaths and severe illness from COVID-19. The next most important thing they do is prevent many cases of milder illness—a job they’re not perfect at, but it’s still far better to be vaccinated than…"
-// publishedAt: "2021-09-14T20:30:00Z"
-// source:
-// id: null
-// name: "Lifehacker.com"
-// [[Prototype]]: Object
-// title: "Do Vaccines Also Protect Against Long COVID?"
-// url: "https://lifehacker.com/do-vaccines-also-protect-against-long-covid-1847675530"
-// urlToImage: "https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl
+
 
