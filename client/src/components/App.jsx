@@ -4,6 +4,8 @@ import CovidSummary from './CovidSummary.jsx';
 
 // const axios = require('axios');
 import axios from './axios.jsx';
+import axios2 from './axios2.jsx';
+
 
 function App() {
 
@@ -16,6 +18,8 @@ function App() {
   const [country, setCountry] = useState("");
   const [covidCasesYAxis, setCovidCasesYAxis] = useState([]);
   const [covidDatesXAxis, setCovidDatesXAxis] = useState([]);
+
+  const [newsArticles, setNewsArticles] = useState([]);
 
 
   useEffect(() => {
@@ -32,6 +36,16 @@ function App() {
           setCovidSummary(res.data);
         }
 
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
+
+    axios2.get('/v2/everything?q=covid&apiKey=add8985f6ac24c4d9a5969b4d2242f10')
+      .then((res) => {
+        console.log(res);
+        setNewsArticles(res.data.articles);
       })
       .catch((err) => {
         console.log(err);
@@ -137,3 +151,5 @@ function App() {
 }
 
 export default App
+
+// news api: add8985f6ac24c4d9a5969b4d2242f10

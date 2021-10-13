@@ -1,5 +1,7 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+// var LineChart = require("react-chartjs-2").Line;
 
 const LineGraph = (props) => {
 
@@ -52,20 +54,22 @@ const LineGraph = (props) => {
     ]
   };
 
-  const options = {
-    scales: {
-      yAxes: [{
-        ticks: {
-          fontSize: 40
-        }
-      }],
-      xAxes: [{
-        ticks: {
-          fontSize: 40
-        }
-      }]
-    }
-  };
+  // const options = {
+  //   scales: {
+  //     yAxes: [{
+  //       ticks: {
+  //         fontSize: 40
+  //       }
+  //     }],
+  //     xAxes: [{
+  //       ticks: {
+  //         fontSize: 40
+  //       }
+  //     }]
+  //   }
+  // };
+
+  // const options = { scales: { yAxes: [{ ticks: { beginAtZero: true, fontSize: 16 } }], xAxes: [{ ticks: { beginAtZero: true, fontSize: 16 } }] } }
 
   return (
     <div style={{
@@ -73,24 +77,34 @@ const LineGraph = (props) => {
       height: '1500px',
       margin: '50px auto' // 50px all around, center
     }}>
-      <Line data={data}
-        options={{
-          scales: {
-            yAxes: [{
-              ticks: {
-                fontSize: 20
-              }
-            }],
-            xAxes: [{
-              ticks: {
-                fontSize: 20
-              }
-            }]
-          },
-
-        }} />
+      <Line data={data} />
     </div>
   )
 }
 
 export default LineGraph;
+
+
+// options = {{
+//   scales: {
+//     yAxes: [{
+//       ticks: {
+//         fontSize: 20
+//       },
+//       scaleLabel: {
+//         display: true,
+//         labelString: 'Y text'
+//       }
+//     }],
+//       xAxes: [{
+//         ticks: {
+//           fontSize: 20
+//         },
+//         scaleLabel: {
+//           display: true,
+//           labelString: 'X text'
+//         }
+//       }]
+//   },
+
+// }}
