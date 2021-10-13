@@ -5,6 +5,7 @@ import CovidSummary from './Graph/CovidSummary.jsx';
 // const axios = require('axios');
 import axios from './Graph/axios.jsx';
 import axios2 from './NewsCards/axios2.jsx';
+import NewsCards from './NewsCards/NewsCards.jsx';
 
 
 function App() {
@@ -145,6 +146,9 @@ function App() {
         yAxis={covidCasesYAxis}
         xAxis={covidDatesXAxis}
       />
+      <div className="news">
+        <NewsCards articles={newsArticles} />
+      </div>
     </div >
   )
 }
