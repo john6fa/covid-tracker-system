@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+const axios = require('axios');
 
 const bodyParser = require('body-parser');
-const data = require('./helper');
+const helper = require('./helper');
+
+const { getNews, createNews, removeNews, updateNews } = require('../database/index');
 
 // Middleware
 app.use(bodyParser.json());
@@ -12,10 +15,22 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 // ROUTES
 app.get('/summary', (req, res) => {
-  data.getSummary((err, data) => {
+  helper.getSummary((err, data) => {
     if (err) {
       res.status(404).send(err);
     } else {
+      res.status(200).send(data);
+    }
+  });
+})
+
+
+app.get('/country/:countrySlug/status/confirmed', (req, res) => {
+  helper.getCountryDataByDates(req.params.countrySlug, req.query, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      // console.log("success country data")
       res.status(200).send(data);
     }
   });

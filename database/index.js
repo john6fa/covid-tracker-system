@@ -59,3 +59,10 @@ const updateNews = (id, title, summary, source, published_at, url_site) => {
       console.log(error);
     })
 }
+
+module.exports = {
+  getNews,
+  createNews,
+  removeNews,
+  updateNews
+}

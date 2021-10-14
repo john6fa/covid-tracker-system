@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import LineGraph from './Graph/LineGraph.jsx';
 import CovidSummary from './Graph/CovidSummary.jsx';
 
-// const axios = require('axios');
-import axios from './Graph/axios.jsx';
+const axios = require('axios');
+import axios3 from './Graph/axios.jsx';
 import axios2 from './NewsCards/axios2.jsx';
 import NewsCards from './NewsCards/NewsCards.jsx';
 
@@ -96,6 +96,7 @@ function App() {
 
   // https://api.covid19api.com/country/south-africa/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z
   const getCountryDataByDates = (countrySlug, to, from) => {
+    // axios3.get(`/country/${countrySlug}/status/confirmed?from=${from}T00:00:00Z&to=${to}T00:00:00Z`)
     axios.get(`/country/${countrySlug}/status/confirmed?from=${from}T00:00:00Z&to=${to}T00:00:00Z`)
       .then((res) => {
         console.log(res);
