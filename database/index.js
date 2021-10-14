@@ -30,7 +30,7 @@ const getNews = () => {
 }
 
 const createNews = (title, summary, source, published_at, url_site) => {
-  return queryPromise('INSERT INTO covid (title, summary, source, published_at, url_site) VALUES (?, ?, ?, ?)', [title, summary, source, published_at, url_site])
+  return queryPromise('INSERT INTO covid (title, summary, source, published_at, url_site) VALUES (?, ?, ?, ?, ?)', [title, summary, source, published_at, url_site])
     .then(() => {
       console.log('Success with POST request');
     })

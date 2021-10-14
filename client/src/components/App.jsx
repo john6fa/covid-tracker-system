@@ -13,7 +13,7 @@ function App() {
   const [totalConfirmed, setTotalConfirmed] = useState(0);
   const [totalRecovered, setTotalRecovered] = useState(0);
   const [totalDeaths, setTotalDeaths] = useState(0);
-  const [loading, setLoading] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [covidSummary, setCovidSummary] = useState({});
   const [days, setDays] = useState(7);
   const [country, setCountry] = useState("");
@@ -21,6 +21,8 @@ function App() {
   const [covidDatesXAxis, setCovidDatesXAxis] = useState([]);
 
   const [newsArticles, setNewsArticles] = useState([]);
+
+  const [newsArticlesDB, setNewsArticlesDB] = useState([]);
 
 
   useEffect(() => {
@@ -105,25 +107,44 @@ function App() {
         // res.data.forEach((country, index) => {
         //   covidCases.push(country.Cases);
         // })
-
         const yAxisCovidCount = res.data.map((d) => d.Cases);
         const xAxisDates = res.data.map((d) => d.Date.substring(0, 10));
-
         const covidDetails = covidSummary.Countries.find(country => country.Slug === countrySlug);
-
 
         setCovidCasesYAxis(yAxisCovidCount);
         setCovidDatesXAxis(xAxisDates);
         setTotalConfirmed(covidDetails['TotalConfirmed']);
         setTotalRecovered(covidDetails['TotalRecovered']);
         setTotalDeaths(covidDetails['TotalDeaths']);
-
       })
-
       .catch((err) => {
         console.log(err);
       })
   }
+
+
+  const getNewsDatabase = () => {
+    axios2.get('/api/news')
+      .then((res) => {
+        setNewsArticlesDB(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  };
+
+  // const postNewsDatabase = () {
+
+  // };
+
+  // const putNewsDatabase = () {
+
+  // };
+
+  // const deleteNewsDatabase = () {
+
+  // };
+
 
   return (
     <div className="App">
