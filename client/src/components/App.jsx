@@ -6,6 +6,10 @@ const axios = require('axios');
 import axios3 from './Graph/axios.jsx';
 import axios2 from './NewsCards/axios2.jsx';
 import NewsCards from './NewsCards/NewsCards.jsx';
+import Form from './Form/Form.jsx';
+
+import Button from '@material-ui/core/Button';
+import ModalDialog from './Form/ModalDialog.jsx';
 
 
 function App() {
@@ -23,6 +27,8 @@ function App() {
   const [newsArticles, setNewsArticles] = useState([]);
 
   const [newsArticlesDB, setNewsArticlesDB] = useState([]);
+
+  const [open, setOpen] = useState(false);
 
 
   useEffect(() => {
@@ -48,7 +54,6 @@ function App() {
     axios2.get('/v2/everything?q=covid&apiKey=add8985f6ac24c4d9a5969b4d2242f10')
       .then((res) => {
         console.log(res);
-        console.log(object)
         setNewsArticles(res.data.articles);
       })
       .catch((err) => {
@@ -67,7 +72,7 @@ function App() {
   }, [])
 
   if (loading) {
-    return <p>Loading data from the API</p>;
+    return <p style={{ textTransform: "capitalize", fontSize: "30px" }}>Loading data from the API</p>;
   }
 
   const countries = [];
@@ -108,8 +113,9 @@ function App() {
   }
 
   // https://api.covid19api.com/country/south-africa/status/confirmed?from=2020-03-01T00:00:00Z&to=2020-04-01T00:00:00Z
+  // axios3.get(`/country/${countrySlug}/status/confirmed?from=${from}T00:00:00Z&to=${to}T00:00:00Z`)
+
   const getCountryDataByDates = (countrySlug, to, from) => {
-    // axios3.get(`/country/${countrySlug}/status/confirmed?from=${from}T00:00:00Z&to=${to}T00:00:00Z`)
     axios.get(`/country/${countrySlug}/status/confirmed?from=${from}T00:00:00Z&to=${to}T00:00:00Z`)
       .then((res) => {
         console.log(res);
@@ -166,6 +172,17 @@ function App() {
   // };
 
 
+  // function to handle modal open
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  // function to handle modal close
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
   return (
     <div className="App">
       <CovidSummary
@@ -190,6 +207,20 @@ function App() {
       />
       <div className="news">
         <NewsCards articles={newsArticles} />
+      </div>
+      <div>
+        <Button variant="contained" color="primary" onClick={handleOpen} style={{
+          backgroundColor: 'rgb(46, 138, 224)',
+          color: '#FFFFFF',
+          marginTop: '100px',
+          marginBottom: '100px',
+          fontSize: '35px'
+        }}>
+          Add News Article
+        </Button>
+        <ModalDialog open={open} handleClose={handleClose} />
+
+        {/* <Form /> */}
       </div>
     </div >
   )
