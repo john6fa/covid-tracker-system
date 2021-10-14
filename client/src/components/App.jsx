@@ -48,11 +48,22 @@ function App() {
     axios2.get('/v2/everything?q=covid&apiKey=add8985f6ac24c4d9a5969b4d2242f10')
       .then((res) => {
         console.log(res);
+        console.log(object)
         setNewsArticles(res.data.articles);
       })
       .catch((err) => {
         console.log(err);
       })
+
+    axios.get('/api/news')
+      .then((res) => {
+        setNewsArticlesDB(res.data);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
   }, [])
 
   if (loading) {
@@ -122,20 +133,29 @@ function App() {
       })
   }
 
+  // inside useEffect
+  // const getNewsDatabase = () => {
+  //   axios.get('/api/news')
+  //     .then((res) => {
+  //       setNewsArticlesDB(res.data);
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     })
+  // };
 
-  const getNewsDatabase = () => {
-    axios2.get('/api/news')
-      .then((res) => {
-        setNewsArticlesDB(res.data);
+  const postNewsDatabase = (newsObj) => {
+    axios.post('/api/news', newsObj)
+      .then((response) => {
+        // setNewsArticlesDB(newsArticlesDB.concat(newsObj));
+        setNewsArticlesDB([...newsArticlesDB, newsObj]);
+        console.log(response);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       })
   };
-
-  // const postNewsDatabase = () {
-
-  // };
 
   // const putNewsDatabase = () {
 
