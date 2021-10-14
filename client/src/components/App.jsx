@@ -214,7 +214,7 @@ function App() {
           color: '#FFFFFF',
           marginTop: '100px',
           marginBottom: '100px',
-          fontSize: '35px'
+          fontSize: '30px'
         }}>
           Add News Article
         </Button>
